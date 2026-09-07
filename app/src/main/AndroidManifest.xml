@@ -39,7 +39,7 @@
         <activity
             android:name=".ui.screens.ShareReceiverActivity"
             android:exported="true"
-            android:label="Save to Linksi"
+            android:label="Save to LinkNest"
             android:theme="@style/Theme.Linksi.Transparent"
             android:excludeFromRecents="true">
             <intent-filter>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Linksi</string>
+    <string name="app_name">LinkNest</string>
     <string name="save_link">保存链接</string>
     <string name="all_links">所有链接</string>
     <string name="favorites">收藏</string>
@@ -8,7 +8,7 @@
     <string name="search_short">搜索…</string>
     <string name="no_links">暂无链接</string>
     <string name="add_first_link">保存你的第一个链接！</string>
-    <string name="share_to_linksi">保存到 Linksi</string>
+    <string name="share_to_LinkNest">保存到 LinkNest</string>
 
     <string name="settings">设置</string>
     <string name="back">返回</string>
@@ -43,7 +43,7 @@
 
     <string name="browser">浏览器</string>
     <string name="in_app_browser">应用内浏览器</string>
-    <string name="in_app_browser_on">在 Linksi 内打开链接</string>
+    <string name="in_app_browser_on">在 LinkNest 内打开链接</string>
     <string name="in_app_browser_off">在默认浏览器中打开链接</string>
 
     <string name="updates">更新</string>
@@ -71,7 +71,7 @@
     <string name="by"> 作者：</string>
 
     <string name="update_available_dialog_title">有可用更新</string>
-    <string name="update_available_dialog_text">Linksi 有新版本可用。</string>
+    <string name="update_available_dialog_text">LinkNest 有新版本可用。</string>
     <string name="update_now">立即更新</string>
     <string name="later">以后</string>
     <string name="add_link">保存链接</string>
@@ -231,15 +231,15 @@
     <!-- Import & Export -->
     <string name="import_export_title">导入与导出</string>
     <string name="export">导出</string>
-    <string name="export_json_title">导出为 Linksi JSON</string>
-    <string name="export_json_subtitle">完整备份 — 可在任何装有 Linksi 的设备上重新导入</string>
+    <string name="export_json_title">导出为 LinkNest JSON</string>
+    <string name="export_json_subtitle">完整备份 — 可在任何装有 LinkNest 的设备上重新导入</string>
     <string name="export_csv_title">导出为 CSV</string>
     <string name="export_csv_subtitle">在 Excel、Google 表格或任何电子表格应用中打开</string>
     <string name="export_html_title">导出为 HTML</string>
     <string name="export_html_subtitle">标准浏览器书签格式 — 导入 Chrome, Safari 等</string>
     <string name="import_action">导入</string>
-    <string name="import_json_title">导入 Linksi 备份</string>
-    <string name="import_json_subtitle">从 Linksi 导出的 .json 文件恢复</string>
+    <string name="import_json_title">导入 LinkNest 备份</string>
+    <string name="import_json_subtitle">从 LinkNest 导出的 .json 文件恢复</string>
     <string name="import_browser_title">导入浏览器书签</string>
     <string name="import_browser_subtitle">从 Chrome、Firefox、Safari HTML 导出文件导入</string>
     <string name="fetching_metadata_phase">正在获取元数据…</string>
@@ -346,7 +346,7 @@
     <string name="pin_must_be_4_digits">PIN 码必须为 4 位数字</string>
     <string name="pin_saved">PIN 码已保存</string>
     <string name="unlock">解锁</string>
-    <string name="authenticate">请验证以解锁 Linksi</string>
+    <string name="authenticate">请验证以解锁 LinkNest</string>
     <string name="locked_folders">锁定文件夹</string>
     <string name="locked_folders_subtitle">已锁定文件夹中的链接将在主屏幕中隐藏</string>
     <string name="no_folders_created">尚未创建文件夹</string>
@@ -355,7 +355,7 @@
     <string name="universal_lock_desc">同时启用应用锁和文件夹锁功能</string>
     <string name="app_security">应用安全</string>
     <string name="cannot_read_file">无法读取文件</string>
-    <string name="not_a_linksi_file">不是 Linksi 导出文件</string>
+    <string name="not_a_LinkNest_file">不是 LinkNest 导出文件</string>
 
     <!-- 回收站 -->
     <string name="trash_bin">回收站</string>

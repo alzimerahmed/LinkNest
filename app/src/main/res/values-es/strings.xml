@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Linksi</string>
+    <string name="app_name">LinkNest</string>
     <string name="save_link">Guardar enlace</string>
     <string name="all_links">Todos los enlaces</string>
     <string name="favorites">Favoritos</string>
@@ -8,7 +8,7 @@
     <string name="search_short">Buscar…</string>
     <string name="no_links">Aún no hay enlaces</string>
     <string name="add_first_link">¡Guarda tu primer enlace!</string>
-    <string name="share_to_linksi">Guardar en Linksi</string>
+    <string name="share_to_LinkNest">Guardar en LinkNest</string>
 
     <string name="settings">Ajustes</string>
     <string name="back">Atrás</string>
@@ -45,7 +45,7 @@
 
     <string name="browser">Navegador</string>
     <string name="in_app_browser">Navegador interno</string>
-    <string name="in_app_browser_on">Los enlaces se abren dentro de Linksi</string>
+    <string name="in_app_browser_on">Los enlaces se abren dentro de LinkNest</string>
     <string name="in_app_browser_off">Los enlaces se abren en tu navegador predeterminado</string>
 
     <string name="updates">Actualizaciones</string>
@@ -73,7 +73,7 @@
     <string name="by"> por </string>
 
     <string name="update_available_dialog_title">Actualización disponible</string>
-    <string name="update_available_dialog_text">Una nueva versión de Linksi está disponible.</string>
+    <string name="update_available_dialog_text">Una nueva versión de LinkNest está disponible.</string>
     <string name="update_now">Actualizar ahora</string>
     <string name="later">Más tarde</string>
     <string name="add_link">Guardar enlace</string>
@@ -233,15 +233,15 @@
     <!-- Importar y Exportar -->
     <string name="import_export_title">Importar y Exportar</string>
     <string name="export">Exportar</string>
-    <string name="export_json_title">Exportar como JSON de Linksi</string>
-    <string name="export_json_subtitle">Copia de seguridad completa — reimportar en cualquier dispositivo con Linksi</string>
+    <string name="export_json_title">Exportar como JSON de LinkNest</string>
+    <string name="export_json_subtitle">Copia de seguridad completa — reimportar en cualquier dispositivo con LinkNest</string>
     <string name="export_csv_title">Exportar como CSV</string>
     <string name="export_csv_subtitle">Abrir en Excel, Google Sheets o cualquier aplicación de hojas de cálculo</string>
     <string name="export_html_title">Exportar como HTML</string>
     <string name="export_html_subtitle">Formato de marcadores estándar — importar en Chrome, Safari, etc.</string>
     <string name="import_action">Importar</string>
-    <string name="import_json_title">Importar copia de seguridad de Linksi</string>
-    <string name="import_json_subtitle">Restaurar desde un archivo .json exportado de Linksi</string>
+    <string name="import_json_title">Importar copia de seguridad de LinkNest</string>
+    <string name="import_json_subtitle">Restaurar desde un archivo .json exportado de LinkNest</string>
     <string name="import_browser_title">Importar marcadores del navegador</string>
     <string name="import_browser_subtitle">Importar desde exportación HTML de Chrome, Firefox, Safari</string>
     <string name="fetching_metadata_phase">Obteniendo metadatos…</string>
@@ -349,7 +349,7 @@
     <string name="pin_must_be_4_digits">El PIN debe ser de 4 dígitos</string>
     <string name="pin_saved">PIN guardado</string>
     <string name="unlock">Desbloquear</string>
-    <string name="authenticate">Autenticarse para desbloquear Linksi</string>
+    <string name="authenticate">Autenticarse para desbloquear LinkNest</string>
     <string name="locked_folders">Carpetas bloqueadas</string>
     <string name="locked_folders_subtitle">Los enlaces en carpetas bloqueadas están ocultos de la pantalla de inicio</string>
     <string name="no_folders_created">Aún no se han creado carpetas</string>
@@ -358,7 +358,7 @@
     <string name="universal_lock_desc">Activa tanto el Bloqueo de Aplicación como el Bloqueo de Carpetas</string>
     <string name="app_security">Seguridad de la aplicación</string>
     <string name="cannot_read_file">No se puede leer el archivo</string>
-    <string name="not_a_linksi_file">No es un archivo de exportación de Linksi</string>
+    <string name="not_a_LinkNest_file">No es un archivo de exportación de LinkNest</string>
 
     <!-- Papelera -->
     <string name="trash_bin">Papelera</string>

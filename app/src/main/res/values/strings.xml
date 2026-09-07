@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Linksi</string>
+    <string name="app_name">LinkNest</string>
     <string name="save_link">Save Link</string>
     <string name="all_links">All Links</string>
     <string name="favorites">Favorites</string>
@@ -8,7 +8,7 @@
     <string name="search_short">Search…</string>
     <string name="no_links">No links yet</string>
     <string name="add_first_link">Save your first link!</string>
-    <string name="share_to_linksi">Save to Linksi</string>
+    <string name="share_to_LinkNest">Save to LinkNest</string>
 
     <string name="settings">Settings</string>
     <string name="back">Back</string>
@@ -45,7 +45,7 @@
 
     <string name="browser">Browser</string>
     <string name="in_app_browser">In-app browser</string>
-    <string name="in_app_browser_on">Links open inside Linksi</string>
+    <string name="in_app_browser_on">Links open inside LinkNest</string>
     <string name="in_app_browser_off">Links open in your default browser</string>
 
     <string name="updates">Updates</string>
@@ -89,7 +89,7 @@
     <string name="by"> by </string>
 
     <string name="update_available_dialog_title">Update Available</string>
-    <string name="update_available_dialog_text">A new version of Linksi is available.</string>
+    <string name="update_available_dialog_text">A new version of LinkNest is available.</string>
     <string name="update_now">Update Now</string>
     <string name="later">Later</string>
     <string name="add_link">Save Link</string>
@@ -251,15 +251,15 @@
     <!-- Import & Export -->
     <string name="import_export_title">Import &amp; Export</string>
     <string name="export">Export</string>
-    <string name="export_json_title">Export as Linksi JSON</string>
-    <string name="export_json_subtitle">Full backup — reimport on any device with Linksi</string>
+    <string name="export_json_title">Export as LinkNest JSON</string>
+    <string name="export_json_subtitle">Full backup — reimport on any device with LinkNest</string>
     <string name="export_csv_title">Export as CSV</string>
     <string name="export_csv_subtitle">Open in Excel, Google Sheets, or any spreadsheet app</string>
     <string name="export_html_title">Export as HTML</string>
     <string name="export_html_subtitle">Standard browser bookmarks format — import in Chrome, Safari, etc.</string>
     <string name="import_action">Import</string>
-    <string name="import_json_title">Import Linksi backup</string>
-    <string name="import_json_subtitle">Restore from a .json file exported from Linksi</string>
+    <string name="import_json_title">Import LinkNest backup</string>
+    <string name="import_json_subtitle">Restore from a .json file exported from LinkNest</string>
     <string name="import_browser_title">Import browser bookmarks</string>
     <string name="import_browser_subtitle">Import from Chrome, Firefox, Safari HTML export</string>
     <string name="fetching_metadata_phase">Fetching metadata…</string>
@@ -370,7 +370,7 @@
     <string name="pin_saved">PIN saved</string>
     <string name="unlock">Unlock</string>
     <string name="unlock_folder">Unlock Folder</string>
-    <string name="authenticate">Authenticate to unlock Linksi</string>
+    <string name="authenticate">Authenticate to unlock LinkNest</string>
     <string name="locked_folders">Locked Folders</string>
     <string name="locked_folders_subtitle">Links in locked folders are hidden from the home screen</string>
     <string name="no_folders_created">No folders created yet</string>
@@ -379,7 +379,7 @@
     <string name="universal_lock_desc">Enable both App Lock and Folder Lock features</string>
     <string name="app_security">App Security</string>
     <string name="cannot_read_file">Cannot read file</string>
-    <string name="not_a_linksi_file">Not a Linksi export file</string>
+    <string name="not_a_LinkNest_file">Not a LinkNest export file</string>
 
     <!-- Trash Bin -->
     <string name="trash_bin">Trash Bin</string>
