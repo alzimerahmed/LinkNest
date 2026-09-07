@@ -184,6 +184,26 @@ fun SettingsScreen(
                             }
                         }
                     )
+                    HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                    )
+                    SettingsItem(
+                        icon = Icons.Outlined.LinkOff,
+                        title = stringResource(id = com.linksi.app.R.string.check_link_health),
+                        subtitle = stringResource(id = com.linksi.app.R.string.check_link_health_subtitle),
+                        onClick = { viewModel.checkLinkHealth() },
+                        trailingContent = {
+                            if (state.isCheckingLinks) {
+                                CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
+                            } else {
+                                Icon(
+                                    Icons.Outlined.ChevronRight, null,
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                    )
                 }
             }
 
@@ -476,6 +496,33 @@ fun SettingsScreen(
                 Spacer(Modifier.height(8.dp))
             }
         }
+    }
+
+    // ── Dead Links Dialog ─────────────────────────────────────
+    if (state.showDeadLinksDialog) {
+        AlertDialog(
+            onDismissRequest = viewModel::dismissDeadLinksDialog,
+            icon = {
+                Icon(
+                    Icons.Outlined.LinkOff, null,
+                    tint = MaterialTheme.colorScheme.error
+                )
+            },
+            title = { Text(stringResource(id = com.linksi.app.R.string.check_link_health)) },
+            text = {
+                Text(stringResource(id = com.linksi.app.R.string.dead_links_found, state.deadLinkIds.size))
+            },
+            confirmButton = {
+                Button(onClick = viewModel::deleteDeadLinks) {
+                    Text(stringResource(id = com.linksi.app.R.string.move_to_trash))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = viewModel::dismissDeadLinksDialog) {
+                    Text(stringResource(id = com.linksi.app.R.string.cancel))
+                }
+            }
+        )
     }
 
     // ── Duplicates Dialog ─────────────────────────────────────

@@ -75,6 +75,12 @@
     <string name="reader_unavailable">Reader view isn\'t available for this page.</string>
     <string name="reader_font_smaller">Smaller text</string>
     <string name="reader_font_larger">Larger text</string>
+    <string name="check_link_health">Check link health</string>
+    <string name="check_link_health_subtitle">Scan your library for broken or dead links</string>
+    <string name="all_links_healthy">All %1$d links are healthy 🎉</string>
+    <string name="dead_links_found">%1$d broken links found. Move them to trash?</string>
+    <string name="dead_links_trashed">Moved %1$d broken links to trash</string>
+    <string name="move_to_trash">Move to trash</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>

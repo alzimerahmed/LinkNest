@@ -66,7 +66,10 @@ data class SettingsUiState(
     val exportIncludeLocked: Boolean = false,
     val duplicateGroups: List<List<com.linksi.app.domain.model.Link>> = emptyList(),
     val isScanningDuplicates: Boolean = false,
-    val showDuplicatesDialog: Boolean = false
+    val showDuplicatesDialog: Boolean = false,
+    val isCheckingLinks: Boolean = false,
+    val deadLinkIds: List<Long> = emptyList(),
+    val showDeadLinksDialog: Boolean = false
 )
 
 @HiltViewModel
@@ -563,4 +566,38 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun dismissDuplicatesDialog() = _uiState.update { it.copy(showDuplicatesDialog = false) }
+
+    fun checkLinkHealth() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isCheckingLinks = true) }
+            val links = repository.getAllLinks().first()
+            val report = com.linksi.app.utils.LinkHealthChecker.check(links)
+            _uiState.update {
+                it.copy(
+                    isCheckingLinks = false,
+                    deadLinkIds = report.deadLinkIds,
+                    showDeadLinksDialog = report.deadLinkIds.isNotEmpty(),
+                    message = if (report.deadLinkIds.isEmpty())
+                        context.getString(com.linksi.app.R.string.all_links_healthy, report.checked)
+                    else null
+                )
+            }
+        }
+    }
+
+    fun deleteDeadLinks() {
+        viewModelScope.launch {
+            val ids = _uiState.value.deadLinkIds
+            ids.forEach { repository.moveToBin(it) }
+            _uiState.update {
+                it.copy(
+                    deadLinkIds = emptyList(),
+                    showDeadLinksDialog = false,
+                    message = context.getString(com.linksi.app.R.string.dead_links_trashed, ids.size)
+                )
+            }
+        }
+    }
+
+    fun dismissDeadLinksDialog() = _uiState.update { it.copy(showDeadLinksDialog = false) }
 }
