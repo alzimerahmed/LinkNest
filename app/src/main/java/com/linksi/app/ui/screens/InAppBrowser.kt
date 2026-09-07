@@ -352,7 +352,6 @@ fun ReaderView(
                 }
             }
         }
-    }
 }
 
 @SuppressLint("SetJavaScriptEnabled")
