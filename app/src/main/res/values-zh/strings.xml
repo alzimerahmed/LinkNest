@@ -8,7 +8,7 @@
     <string name="search_short">搜索…</string>
     <string name="no_links">暂无链接</string>
     <string name="add_first_link">保存你的第一个链接！</string>
-    <string name="share_to_LinkNest">保存到 LinkNest</string>
+    <string name="share_to_linksi">保存到 LinkNest</string>
 
     <string name="settings">设置</string>
     <string name="back">返回</string>
@@ -355,7 +355,7 @@
     <string name="universal_lock_desc">同时启用应用锁和文件夹锁功能</string>
     <string name="app_security">应用安全</string>
     <string name="cannot_read_file">无法读取文件</string>
-    <string name="not_a_LinkNest_file">不是 LinkNest 导出文件</string>
+    <string name="not_a_linksi_file">不是 LinkNest 导出文件</string>
 
     <!-- 回收站 -->
     <string name="trash_bin">回收站</string>

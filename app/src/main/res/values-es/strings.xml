@@ -8,7 +8,7 @@
     <string name="search_short">Buscar…</string>
     <string name="no_links">Aún no hay enlaces</string>
     <string name="add_first_link">¡Guarda tu primer enlace!</string>
-    <string name="share_to_LinkNest">Guardar en LinkNest</string>
+    <string name="share_to_linksi">Guardar en LinkNest</string>
 
     <string name="settings">Ajustes</string>
     <string name="back">Atrás</string>
@@ -358,7 +358,7 @@
     <string name="universal_lock_desc">Activa tanto el Bloqueo de Aplicación como el Bloqueo de Carpetas</string>
     <string name="app_security">Seguridad de la aplicación</string>
     <string name="cannot_read_file">No se puede leer el archivo</string>
-    <string name="not_a_LinkNest_file">No es un archivo de exportación de LinkNest</string>
+    <string name="not_a_linksi_file">No es un archivo de exportación de LinkNest</string>
 
     <!-- Papelera -->
     <string name="trash_bin">Papelera</string>

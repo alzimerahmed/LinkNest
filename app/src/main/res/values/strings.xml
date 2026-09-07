@@ -8,7 +8,7 @@
     <string name="search_short">Search…</string>
     <string name="no_links">No links yet</string>
     <string name="add_first_link">Save your first link!</string>
-    <string name="share_to_LinkNest">Save to LinkNest</string>
+    <string name="share_to_linksi">Save to LinkNest</string>
 
     <string name="settings">Settings</string>
     <string name="back">Back</string>
@@ -379,7 +379,7 @@
     <string name="universal_lock_desc">Enable both App Lock and Folder Lock features</string>
     <string name="app_security">App Security</string>
     <string name="cannot_read_file">Cannot read file</string>
-    <string name="not_a_LinkNest_file">Not a LinkNest export file</string>
+    <string name="not_a_linksi_file">Not a LinkNest export file</string>
 
     <!-- Trash Bin -->
     <string name="trash_bin">Trash Bin</string>

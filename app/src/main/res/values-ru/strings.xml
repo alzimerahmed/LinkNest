@@ -8,7 +8,7 @@
     <string name="search_short">Поиск…</string>
     <string name="no_links">Ссылок пока нет</string>
     <string name="add_first_link">Сохраните свою первую ссылку!</string>
-    <string name="share_to_LinkNest">Сохранить в LinkNest</string>
+    <string name="share_to_linksi">Сохранить в LinkNest</string>
 
     <string name="settings">Настройки</string>
     <string name="back">Назад</string>
@@ -355,7 +355,7 @@
     <string name="universal_lock_desc">Включить блокировку приложения и блокировку папок</string>
     <string name="app_security">Безопасность приложения</string>
     <string name="cannot_read_file">Не удалось прочитать файл</string>
-    <string name="not_a_LinkNest_file">Файл не является экспортом LinkNest</string>
+    <string name="not_a_linksi_file">Файл не является экспортом LinkNest</string>
 
     <!-- Корзина -->
     <string name="trash_bin">Корзина</string>
