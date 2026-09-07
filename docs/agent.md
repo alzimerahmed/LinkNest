@@ -13,12 +13,15 @@ Record of agent/sub-agent involvement during implementation (per `.devin` prompt
 | Phase 5 — research | Web research (search agent) | Competitive analysis of Raindrop/Pocket/Instapaper/SaveSync/Keep → `docs/idea.md` |
 | Phase 6 — planning | Project Architect | Phased plan → `docs/plan.md` |
 | Phase 7 — Phase A execution | Feature Engineer + Quality Engineer review | Duplicate finder, Pocket tag import, reading stats implemented; review sub-agent verified imports, references, SQL, Compose APIs — no issues found |
+| Phase B — Reader mode | Feature Engineer + Quality Engineer review | `ReaderExtractor.kt` + `ReaderView` in `InAppBrowser` with font controls; review verified imports, icons (material-icons-extended present), strings, brace balance — no issues found |
+| Phase C — Link health | Feature Engineer + Quality Engineer review | `LinkHealthChecker.kt` + Settings entry/dialog; review verified Flow `.first()` import, string resources, icon availability — no issues found |
 
 ## Verification Notes
 - No Android SDK/Gradle available in this environment, so `./gradlew build` could not be run. Verification was done via static review (sub-agent cross-check of all new symbols, imports, string resources, and SQL).
 - Recommended local verification: `./gradlew assembleDebug` and `./gradlew test`.
 
 ## Open Items
-- Phases B–E of `docs/plan.md` pending.
+- Phases D–E of `docs/plan.md` pending (AI tagging/summaries, widget, swipe gestures, tests).
+- Deferred: offline text cache (needs DB migration), smart collections.
 - Unit tests for `ImportExportManager`, URL normalization, and duplicate finder (Phase E).
 - Localized strings for new keys (en added; es/ru/zh fall back to English at runtime).

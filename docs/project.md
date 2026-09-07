@@ -26,10 +26,18 @@ LinkNest (formerly Linksi) is a local-first Android link-saver built with 100% K
 - Cloned from `AsukaAzure/Linksi`, fully detached from origin, all commit metadata and in-code attribution rewritten to Alzimer Ahmed (2026-09).
 - Tags v3.1.0/v3.1.1 preserved under rewritten history.
 
-## Implemented Improvements (Phase A of docs/plan.md)
+## Implemented Improvements
+
+### Phase A (docs/plan.md)
 1. **Bulk duplicate finder** — `LinkDao.getDuplicateLinks()`, `LinkRepository.getDuplicateLinks()`, Settings entry + `DuplicatesDialog` (keep-one, rest to trash).
 2. **Pocket import tags** — `importFromBrowserHtml` now reads `TAGS` attribute from Pocket HTML exports.
 3. **Reading stats** — unread count + top-3 domain chips in Settings stats card.
 
+### Phase B
+4. **Reader mode** — `utils/ReaderExtractor.kt` (Jsoup readability extraction) + `ReaderView` composable in `InAppBrowser` with font-size controls and a bottom-bar toggle. Offline text cache deferred (needs DB migration).
+
+### Phase C
+5. **Broken-link checker** — `utils/LinkHealthChecker.kt` (batched HEAD/GET checks, concurrency 8) + Settings entry with "move dead links to trash" dialog. Smart collections deferred to a later phase.
+
 ## Remaining Roadmap
-See `docs/plan.md` Phases B–E (reader mode, offline cache, smart collections, broken-link checker, AI tagging/summaries, widget, swipe gestures, tests).
+See `docs/plan.md` Phases D–E (AI tagging/summaries, widget, swipe gestures, tests).
