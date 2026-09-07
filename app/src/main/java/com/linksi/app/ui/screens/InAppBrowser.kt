@@ -32,9 +32,14 @@ import android.net.Uri
 import android.app.Activity
 import android.view.WindowManager
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.linksi.app.R
+import com.linksi.app.utils.ReaderExtractor
+import com.linksi.app.utils.ReaderArticle
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -56,6 +61,25 @@ fun InAppBrowser(
     var canGoForward by remember { mutableStateOf(false) }
     var webView by remember { mutableStateOf<WebView?>(null) }
     var dragOffset by remember { mutableStateOf(0f) }
+    var isReaderMode by remember { mutableStateOf(false) }
+    var readerArticle by remember { mutableStateOf<ReaderArticle?>(null) }
+    var isReaderLoading by remember { mutableStateOf(false) }
+    var readerFontScale by remember { mutableStateOf(1f) }
+    val readerScope = rememberCoroutineScope()
+
+    fun toggleReader() {
+        if (isReaderMode) {
+            isReaderMode = false
+            readerArticle = null
+        } else {
+            isReaderMode = true
+            isReaderLoading = true
+            readerScope.launch {
+                readerArticle = ReaderExtractor.extract(currentUrl)
+                isReaderLoading = false
+            }
+        }
+    }
 
     val activity = LocalContext.current as? Activity
     DisposableEffect(isGlobalScreenshotProtectionEnabled) {
@@ -197,6 +221,17 @@ fun InAppBrowser(
                         )
                     }
 
+                    // Reader mode toggle
+                    IconButton(onClick = ::toggleReader) {
+                        Icon(
+                            if (isReaderMode) Icons.Outlined.Article
+                            else Icons.Outlined.MenuBook,
+                            stringResource(R.string.reader_mode),
+                            tint = if (isReaderMode) MaterialTheme.colorScheme.primary
+                                   else MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+
                     // Close browser
                     IconButton(onClick = onDismiss) {
                         Icon(Icons.Outlined.Close, stringResource(R.string.close))
@@ -206,6 +241,17 @@ fun InAppBrowser(
         },
         containerColor = MaterialTheme.colorScheme.background
     ) { padding ->
+        if (isReaderMode) {
+            ReaderView(
+                article = readerArticle,
+                isLoading = isReaderLoading,
+                fontScale = readerFontScale,
+                onFontScaleChange = { readerFontScale = it },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+            )
+        } else {
         WebViewContent(
             url = url,
             modifier = Modifier
@@ -227,6 +273,85 @@ fun InAppBrowser(
             onProgressChanged = { progress = it },
             onScrollChanged = onScrollChanged
         )
+        }
+    }
+}
+
+// ── Reader View ───────────────────────────────────────────────
+@Composable
+fun ReaderView(
+    article: ReaderArticle?,
+    isLoading: Boolean,
+    fontScale: Float,
+    onFontScaleChange: (Float) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = modifier) {
+        when {
+            isLoading -> {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            }
+            article == null -> {
+                Box(Modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.Center) {
+                    Text(
+                        stringResource(R.string.reader_unavailable),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+            else -> {
+                Column {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        IconButton(onClick = { onFontScaleChange((fontScale - 0.1f).coerceAtLeast(0.7f)) }) {
+                            Icon(Icons.Outlined.TextDecrease, stringResource(R.string.reader_font_smaller))
+                        }
+                        IconButton(onClick = { onFontScaleChange((fontScale + 0.1f).coerceAtMost(1.6f)) }) {
+                            Icon(Icons.Outlined.TextIncrease, stringResource(R.string.reader_font_larger))
+                        }
+                    }
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                            .padding(horizontal = 20.dp),
+                        verticalArrangement = Arrangement.spacedBy(14.dp)
+                    ) {
+                            Text(
+                                article.title,
+                                style = MaterialTheme.typography.headlineMedium,
+                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                            )
+                            if (article.byline.isNotBlank()) {
+                                Text(
+                                    article.byline,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            article.paragraphs.forEach { paragraph ->
+                                Text(
+                                    paragraph,
+                                    style = MaterialTheme.typography.bodyLarge.copy(
+                                        fontSize = MaterialTheme.typography.bodyLarge.fontSize * fontScale,
+                                        lineHeight = MaterialTheme.typography.bodyLarge.lineHeight * fontScale
+                                    )
+                                )
+                            }
+                            Spacer(Modifier.height(32.dp))
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

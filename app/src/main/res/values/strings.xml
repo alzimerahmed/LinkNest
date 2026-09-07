@@ -71,6 +71,10 @@
     <string name="no_duplicates_found">No duplicate links found 🎉</string>
     <string name="duplicates_removed">Moved %1$d duplicate links to trash</string>
     <string name="keep">Keep</string>
+    <string name="reader_mode">Reader mode</string>
+    <string name="reader_unavailable">Reader view isn\'t available for this page.</string>
+    <string name="reader_font_smaller">Smaller text</string>
+    <string name="reader_font_larger">Larger text</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>
