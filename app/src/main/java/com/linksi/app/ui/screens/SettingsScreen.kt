@@ -355,7 +355,7 @@ fun SettingsScreen(
                             if (state.updateAvailable) {
                                 val intent = Intent(
                                     Intent.ACTION_VIEW,
-                                    Uri.parse("https://github.com/AsukaAzure/Linksi/releases/latest")
+                                    Uri.parse("https://github.com/alzimerahmed/LinkNest/releases/latest")
                                 )
                                 context.startActivity(intent)
                             } else {
@@ -413,7 +413,7 @@ fun SettingsScreen(
                         modifier = Modifier.clickable {
                             val intent = Intent(
                                 Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/AsukaAzure/")
+                                Uri.parse("https://github.com/alzimerahmed/")
                             )
                             context.startActivity(intent)
                         }

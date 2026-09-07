@@ -171,7 +171,7 @@ class SettingsViewModel @Inject constructor(
             try {
                 // Fetch latest release from GitHub
                 val response = withContext(Dispatchers.IO) {
-                    java.net.URL("https://api.github.com/repos/AsukaAzure/Linksi/releases/latest")
+                    java.net.URL("https://api.github.com/repos/alzimerahmed/LinkNest/releases/latest")
                         .openConnection()
                         .apply {
                             setRequestProperty("Accept", "application/vnd.github.v3+json")

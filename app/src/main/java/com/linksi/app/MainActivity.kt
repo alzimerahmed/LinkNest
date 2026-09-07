@@ -258,7 +258,7 @@ class MainActivity : AppCompatActivity() {
                 currentVersion = version
 
                 val response = withContext(Dispatchers.IO) {
-                    java.net.URL("https://api.github.com/repos/AsukaAzure/Linksi/releases/latest")
+                    java.net.URL("https://api.github.com/repos/alzimerahmed/LinkNest/releases/latest")
                         .openConnection()
                         .apply {
                             connectTimeout = 6000
@@ -325,7 +325,7 @@ class MainActivity : AppCompatActivity() {
                     Button(onClick = {
                         val intent = Intent(
                             Intent.ACTION_VIEW,
-                            Uri.parse("https://github.com/AsukaAzure/Linksi/releases/latest")
+                            Uri.parse("https://github.com/alzimerahmed/LinkNest/releases/latest")
                         )
                         context.startActivity(intent)
                         showUpdateDialog = false
