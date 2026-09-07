@@ -59,11 +59,18 @@
     <string name="stats">Stats</string>
     <string name="total_links">Total links</string>
     <string name="folders">Folders</string>
+    <string name="unread">Unread</string>
+    <string name="top_domains">Top domains</string>
 
     <string name="import_complete">Import complete</string>
     <string name="imported_links_from">Imported %1$d links from %2$s.</string>
     <string name="folders_also_imported">%1$d folders also imported.</string>
     <string name="duplicates_skipped">%1$d duplicate links skipped.</string>
+    <string name="find_duplicates">Find duplicates</string>
+    <string name="find_duplicates_subtitle">Scan your library for duplicate links and clean them up</string>
+    <string name="no_duplicates_found">No duplicate links found 🎉</string>
+    <string name="duplicates_removed">Moved %1$d duplicate links to trash</string>
+    <string name="keep">Keep</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="add">Add</string>

@@ -120,6 +120,15 @@ interface LinkDao {
 
     @Query("SELECT * FROM links")
     suspend fun getAllLinksSync(): List<LinkEntity>
+
+    @Query("""
+        SELECT * FROM links
+        WHERE inBin = 0 AND url IN (
+            SELECT url FROM links WHERE inBin = 0 GROUP BY url HAVING COUNT(*) > 1
+        )
+        ORDER BY url, createdAt ASC
+    """)
+    suspend fun getDuplicateLinks(): List<LinkEntity>
 }
 
 @Dao

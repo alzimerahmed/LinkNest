@@ -27,6 +27,8 @@ data class SettingsUiState(
     val totalLinks: Int = 0,
     val totalFolders: Int = 0,
     val totalFavorites: Int = 0,
+    val totalUnread: Int = 0,
+    val topDomains: List<Pair<String, Int>> = emptyList(),
     val message: String? = null,
     val importResult: ImportResult? = null,
     val duplicateCount: Int = 0,
@@ -61,7 +63,10 @@ data class SettingsUiState(
     val trashBinEnabled: Boolean = true,
     val showQuickFilters: Boolean = true,
     val globalPreventScreenshot: Boolean = false,
-    val exportIncludeLocked: Boolean = false
+    val exportIncludeLocked: Boolean = false,
+    val duplicateGroups: List<List<com.linksi.app.domain.model.Link>> = emptyList(),
+    val isScanningDuplicates: Boolean = false,
+    val showDuplicatesDialog: Boolean = false
 )
 
 @HiltViewModel
@@ -88,6 +93,12 @@ class SettingsViewModel @Inject constructor(
                         totalLinks = links.size,
                         totalFolders = folders.size,
                         totalFavorites = links.count { l -> l.isFavorite },
+                        totalUnread = links.count { l -> !l.isRead },
+                        topDomains = links.groupBy { it.domain }
+                            .filter { it.key.isNotBlank() }
+                            .map { (domain, list) -> domain to list.size }
+                            .sortedByDescending { it.second }
+                            .take(3),
                         folders = folders
                     )
                 }
@@ -519,4 +530,37 @@ class SettingsViewModel @Inject constructor(
 
     fun clearMessage() = _uiState.update { it.copy(message = null) }
     fun dismissImportResult() = backgroundImportManager.dismiss()
+
+    fun findDuplicates() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isScanningDuplicates = true) }
+            val groups = repository.getDuplicateLinks()
+            _uiState.update {
+                it.copy(
+                    isScanningDuplicates = false,
+                    duplicateGroups = groups,
+                    showDuplicatesDialog = true,
+                    message = if (groups.isEmpty()) context.getString(com.linksi.app.R.string.no_duplicates_found) else null
+                )
+            }
+        }
+    }
+
+    fun resolveDuplicateGroup(keepId: Long, deleteIds: List<Long>) {
+        viewModelScope.launch {
+            deleteIds.forEach { repository.moveToBin(it) }
+            _uiState.update { state ->
+                val remaining = state.duplicateGroups.mapNotNull { group ->
+                    group.filter { it.id !in deleteIds }.takeIf { it.size > 1 }
+                }
+                state.copy(
+                    duplicateGroups = remaining,
+                    showDuplicatesDialog = remaining.isNotEmpty(),
+                    message = context.getString(com.linksi.app.R.string.duplicates_removed, deleteIds.size)
+                )
+            }
+        }
+    }
+
+    fun dismissDuplicatesDialog() = _uiState.update { it.copy(showDuplicatesDialog = false) }
 }

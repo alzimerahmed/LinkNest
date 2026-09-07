@@ -185,13 +185,18 @@ fun importFromBrowserHtml(context: Context, uri: Uri): ImportResult {
             } else if (a != null) {
                 val url = a.attr("href")
                 if (url.isNotBlank()) {
+                    // Pocket exports store tags in a TAGS attribute (comma-separated)
+                    val tags = a.attr("tags").split(",")
+                        .map { it.trim() }
+                        .filter { it.isNotBlank() }
                     links.add(Link(
                         id = 0,
                         url = url,
                         title = a.text(),
                         folderId = parentId,
                         domain = extractDomain(url),
-                        faviconUrl = "https://www.google.com/s2/favicons?domain=${extractDomain(url)}&sz=64"
+                        faviconUrl = "https://www.google.com/s2/favicons?domain=${extractDomain(url)}&sz=64",
+                        tags = tags
                     ))
                 }
             }

@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -161,6 +162,26 @@ fun SettingsScreen(
                                 Icons.Outlined.ChevronRight, null,
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant
                             )
+                        }
+                    )
+                    HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                    )
+                    SettingsItem(
+                        icon = Icons.Outlined.ContentCopy,
+                        title = stringResource(id = com.linksi.app.R.string.find_duplicates),
+                        subtitle = stringResource(id = com.linksi.app.R.string.find_duplicates_subtitle),
+                        onClick = { viewModel.findDuplicates() },
+                        trailingContent = {
+                            if (state.isScanningDuplicates) {
+                                CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
+                            } else {
+                                Icon(
+                                    Icons.Outlined.ChevronRight, null,
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
                         }
                     )
                 }
@@ -379,6 +400,39 @@ fun SettingsScreen(
                         StatItem(stringResource(id = com.linksi.app.R.string.total_links), "${state.totalLinks}")
                         StatItem(stringResource(id = com.linksi.app.R.string.folders), "${state.totalFolders}")
                         StatItem(stringResource(id = com.linksi.app.R.string.favorites), "${state.totalFavorites}")
+                        StatItem(stringResource(id = com.linksi.app.R.string.unread), "${state.totalUnread}")
+                    }
+                    if (state.topDomains.isNotEmpty()) {
+                        HorizontalDivider(
+                            modifier = Modifier.padding(horizontal = 16.dp),
+                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                        )
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp, horizontal = 16.dp),
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                stringResource(id = com.linksi.app.R.string.top_domains),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            state.topDomains.forEach { (domain, count) ->
+                                Surface(
+                                    shape = RoundedCornerShape(50),
+                                    color = MaterialTheme.colorScheme.secondaryContainer
+                                ) {
+                                    Text(
+                                        "$domain · $count",
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -407,7 +461,7 @@ fun SettingsScreen(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Text(
-                        "Anush",
+                        "Alzimer Ahmed",
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.clickable {
@@ -422,6 +476,15 @@ fun SettingsScreen(
                 Spacer(Modifier.height(8.dp))
             }
         }
+    }
+
+    // ── Duplicates Dialog ─────────────────────────────────────
+    if (state.showDuplicatesDialog) {
+        DuplicatesDialog(
+            groups = state.duplicateGroups,
+            onKeep = { keep, delete -> viewModel.resolveDuplicateGroup(keep, delete) },
+            onDismiss = viewModel::dismissDuplicatesDialog
+        )
     }
 
     // ── Import Result Dialog ──────────────────────────────────
@@ -603,6 +666,82 @@ fun SettingsScreen(
             onBack = { showTrashBin = false }
         )
     }
+}
+
+// ── Duplicates Dialog ─────────────────────────────────────────
+@Composable
+fun DuplicatesDialog(
+    groups: List<List<com.linksi.app.domain.model.Link>>,
+    onKeep: (Long, List<Long>) -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        icon = {
+            Icon(
+                Icons.Outlined.ContentCopy, null,
+                tint = MaterialTheme.colorScheme.primary
+            )
+        },
+        title = { Text(stringResource(id = com.linksi.app.R.string.find_duplicates)) },
+        text = {
+            LazyColumn(
+                modifier = Modifier.heightIn(max = 400.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                items(groups.size) { index ->
+                    val group = groups[index]
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                    ) {
+                        Column(modifier = Modifier.padding(12.dp)) {
+                            Text(
+                                group.first().domain,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            group.forEach { link ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 4.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(
+                                            link.title.ifBlank { link.url },
+                                            style = MaterialTheme.typography.bodySmall,
+                                            maxLines = 1,
+                                            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                                        )
+                                        Text(
+                                            java.text.DateFormat.getDateInstance()
+                                                .format(java.util.Date(link.createdAt)),
+                                            style = MaterialTheme.typography.labelSmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                    }
+                                    TextButton(onClick = {
+                                        onKeep(
+                                            link.id,
+                                            group.filter { it.id != link.id }.map { it.id }
+                                        )
+                                    }) {
+                                        Text(stringResource(id = com.linksi.app.R.string.keep))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(onClick = onDismiss) { Text(stringResource(id = com.linksi.app.R.string.done)) }
+        }
+    )
 }
 
 // ── Section Header ────────────────────────────────────────────

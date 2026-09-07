@@ -73,6 +73,9 @@ class LinkRepository @Inject constructor(
 
     suspend fun getTotalCount(): Int = linkDao.getTotalCount()
 
+    suspend fun getDuplicateLinks(): List<List<Link>> =
+        linkDao.getDuplicateLinks().map(::toLink).groupBy { it.url }.values.filter { it.size > 1 }
+
     suspend fun getAllTags(): List<String> {
         return linkDao.getAllTagStrings()
             .flatMap { it.split(",") }
