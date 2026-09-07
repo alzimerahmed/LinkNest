@@ -130,8 +130,8 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/AsukaAzure/Linksi.git
-   cd Linksi
+   git clone https://github.com/alzimerahmed/LinkNest.git
+   cd LinkNest
    ```
 
 2. Open in Android Studio
@@ -225,7 +225,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ## Support
 
-Found a bug or have a feature request? [Open an issue](https://github.com/AsukaAzure/Linksi/issues) on GitHub.
+Found a bug or have a feature request? Open an issue in the repository.
 
 ---
 

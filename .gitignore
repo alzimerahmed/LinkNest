@@ -23,3 +23,6 @@ local.properties
 # OS files
 .DS_Store
 captures/
+
+.devin/
+.switchboard/
